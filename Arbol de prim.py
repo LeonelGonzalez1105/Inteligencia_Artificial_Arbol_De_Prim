@@ -16,8 +16,8 @@ topologia = {
 }
 
 def graficar_estado_inicial(grafo_dict):
-    print("\n📊 Generando gráfica del estado inicial (ANTES)...")
-    print("⚠️ IMPORTANTE: Cierra la ventana de la gráfica para continuar con el algoritmo.")
+    print("\nGenerando gráfica del estado inicial (ANTES)...")
+    print("IMPORTANTE: Cierra la ventana de la gráfica para continuar con el algoritmo.")
     
     G = nx.Graph()
     for u, vecinos in grafo_dict.items():
@@ -46,7 +46,7 @@ def algoritmo_prim_logica(grafo_dict, inicio):
     costo_total = 0
     min_heap = [(0, inicio, inicio)]
     
-    print(f"\n--- ⚡ EJECUTANDO ALGORITMO DE PRIM ---")
+    print(f"\n---EJECUTANDO ALGORITMO DE PRIM ---")
     
     while min_heap:
         peso, u, v = heapq.heappop(min_heap)
@@ -59,7 +59,7 @@ def algoritmo_prim_logica(grafo_dict, inicio):
         
         if u != v:
             mst_aristas.append((u, v))
-            print(f"🔧 Conectando: {u} <--> {v} | Costo: ${peso}")
+            print(f"Conectando: {u} <--> {v} | Costo: ${peso}")
 
         for vecino, costo in grafo_dict[v].items():
             if vecino not in visitados:
@@ -74,7 +74,7 @@ def graficar_resultado_final(grafo_dict, aristas_mst, costo_total):
         for v, peso in vecinos.items():
             G.add_edge(u, v, weight=peso)
             
-    pos = nx.spring_layout(G, seed=10) # Misma seed = mismas posiciones
+    pos = nx.spring_layout(G, seed=10) 
     
     plt.figure(figsize=(10, 7))
     
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     # 2. Calcular la solución (Solo corre cuando cierras la ventana anterior)
     mst, costo = algoritmo_prim_logica(topologia, 'Servidor_A')
     
-    print(f"\n✅ RESULTADO FINAL: Presupuesto Total ${costo}")
+    print(f"\n RESULTADO FINAL: Presupuesto Total ${costo}")
     
     # 3. Mostrar la solución
     graficar_resultado_final(topologia, mst, costo)
